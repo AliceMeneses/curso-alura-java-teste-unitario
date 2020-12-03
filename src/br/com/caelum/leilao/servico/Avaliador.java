@@ -30,11 +30,11 @@ public class Avaliador {
 		
 		maiores.sort((lance1,lance2) -> {
 			if(lance1.getValor() < lance2.getValor()) {
-				return -1;				
+				return 1;				
 			}
 			
 			if(lance1.getValor() > lance2.getValor()) {
-				return 1;
+				return -1;
 			}
 			
 			return 0;
