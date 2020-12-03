@@ -1,5 +1,7 @@
 package br.com.caelum.leilao.servico;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,8 +36,8 @@ public class TesteDoAvaliador {
 		double maiorEsperado = 400;
 		double menorEsperado = 250;
 
-		Assert.assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
-		Assert.assertEquals(menorEsperado, leiloeiro.getMenorValor(), 0.0001);
+		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
+		assertEquals(menorEsperado, leiloeiro.getMenorValor(), 0.0001);
 	}
 
 	@Test
@@ -48,8 +50,8 @@ public class TesteDoAvaliador {
 		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 
-		Assert.assertEquals(4000, leiloeiro.getMaiorLance(), 0.0001);
-		Assert.assertEquals(4000, leiloeiro.getMenorValor(), 0.0001);
+		assertEquals(4000, leiloeiro.getMaiorLance(), 0.0001);
+		assertEquals(4000, leiloeiro.getMenorValor(), 0.0001);
 
 	}
 
