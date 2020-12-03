@@ -1,5 +1,7 @@
 package br.com.caelum.leilao.teste;
 
+import org.junit.Test;
+
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
@@ -7,7 +9,8 @@ import br.com.caelum.leilao.servico.Avaliador;
 
 public class TesteDoAvaliador {
 
-	public static void main(String[] args) {
+	@Test
+	public void main() {
 		
 		//parte 1: cenario
 		Usuario alice = new Usuario("Alice");
