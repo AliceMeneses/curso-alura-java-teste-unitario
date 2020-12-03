@@ -54,5 +54,25 @@ public class TesteDoAvaliador {
 		assertEquals(4000, leiloeiro.getMenorValor(), 0.0001);
 
 	}
+	
+	@Test
+	public void deveEncontrarOsTresMaioresLances() {
+		
+		Usuario alice = new Usuario("Alice");
+		Usuario ricardo = new Usuario("Ricardo");
+		
+		Leilao leilao = new Leilao("Xbox");
+		
+		leilao.propoe(new Lance(alice, 4000));
+		leilao.propoe(new Lance(ricardo, 5000));
+		leilao.propoe(new Lance(alice, 5500));
+		leilao.propoe(new Lance(ricardo, 7000));
+		
+		Avaliador leiloeiro = new Avaliador();
+		leiloeiro.avalia(leilao);
+		
+		assertEquals(3, leiloeiro.getTresMaiores().size());
+
+	}
 
 }
