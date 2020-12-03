@@ -50,4 +50,8 @@ public class Avaliador {
 	public double getMenorValor() {
 		return menorValor;
 	}
+	
+	public List<Lance> getTresMaiores() {
+		return maiores;
+	}
 }
