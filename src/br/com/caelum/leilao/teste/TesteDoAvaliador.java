@@ -1,5 +1,6 @@
 package br.com.caelum.leilao.teste;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.caelum.leilao.dominio.Lance;
@@ -29,8 +30,12 @@ public class TesteDoAvaliador {
 		leiloeiro.avalia(leilao);
 		
 		//parte 3: validacao
-		System.out.println(leiloeiro.getMaiorLance());
-		System.out.println(leiloeiro.getMenorValor());
+		
+		double maiorEsperado = 400;
+		double menorEsperado = 250;
+		
+		Assert.assertEquals(maiorEsperado, leiloeiro.getMaiorLance(),0.0001);
+		Assert.assertEquals(menorEsperado, leiloeiro.getMenorValor(), 0.0001);
 	}
 
 }
