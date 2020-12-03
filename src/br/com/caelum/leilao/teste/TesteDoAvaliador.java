@@ -11,7 +11,7 @@ import br.com.caelum.leilao.servico.Avaliador;
 public class TesteDoAvaliador {
 
 	@Test
-	public void main() {
+	public void deveEntenderLancesEmOrdemCrescente() {
 		
 		//parte 1: cenario
 		Usuario alice = new Usuario("Alice");
