@@ -26,20 +26,25 @@ public class Avaliador {
 			}
 		}
 		
+		pegaOsMaioresNo(leilao);
+
+	}
+
+	private void pegaOsMaioresNo(Leilao leilao) {
 		maiores = new ArrayList<>(leilao.getLances());
-		
-		maiores.sort((lance1,lance2) -> {
-			if(lance1.getValor() < lance2.getValor()) {
-				return 1;				
+
+		maiores.sort((lance1, lance2) -> {
+			if (lance1.getValor() < lance2.getValor()) {
+				return 1;
 			}
-			
-			if(lance1.getValor() > lance2.getValor()) {
+
+			if (lance1.getValor() > lance2.getValor()) {
 				return -1;
 			}
-			
+
 			return 0;
 		});
-				
+
 		maiores = maiores.subList(0, maiores.size() >= 3 ? 3 : maiores.size());
 	}
 
@@ -50,7 +55,7 @@ public class Avaliador {
 	public double getMenorValor() {
 		return menorValor;
 	}
-	
+
 	public List<Lance> getTresMaiores() {
 		return maiores;
 	}
