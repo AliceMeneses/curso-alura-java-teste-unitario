@@ -80,5 +80,28 @@ public class TesteDoAvaliador {
 
 
 	}
+	
+	@Test
+	public void deveEncontrarOsMaioresLances() {
+		
+		Usuario alice = new Usuario("Alice");
+		Usuario ricardo = new Usuario("Ricardo");
+		Usuario joao = new Usuario("João");
+		
+		Leilao leilao = new Leilao("Chocolate");
+		
+		leilao.propoe(new Lance(alice, 10));
+		leilao.propoe(new Lance(ricardo, 30));
+		
+		Avaliador leiloeiro = new Avaliador();
+		leiloeiro.avalia(leilao);
+		
+		List<Lance> maiores = leiloeiro.getTresMaiores();
+		assertEquals(2, maiores.size());
+		
+		assertEquals(30, maiores.get(0).getValor(), 0.0001);
+		assertEquals(30, maiores.get(0).getValor(), 0.0001);		
+
+	}
 
 }
