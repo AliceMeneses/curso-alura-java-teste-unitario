@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.leilao.dominio.Lance;
@@ -12,13 +13,25 @@ import br.com.caelum.leilao.dominio.Usuario;
 
 public class TesteDoAvaliador {
 
+	private Avaliador leiloeiro;
+	private Usuario joao;
+	private Usuario ricardo;
+	private Usuario alice;
+
+	@Before
+	public void criaAvaliador() {
+		this.leiloeiro = new Avaliador();
+		
+		alice = new Usuario("Alice");
+		ricardo = new Usuario("Ricardo");
+		joao = new Usuario("João");
+	}
+	
 	@Test
 	public void deveEntenderLancesEmOrdemCrescente() {
 
 		// parte 1: cenario
-		Usuario alice = new Usuario("Alice");
-		Usuario ricardo = new Usuario("Ricardo");
-		Usuario joao = new Usuario("João");
+
 
 		Leilao leilao = new Leilao("Playstation 5");
 
@@ -27,8 +40,6 @@ public class TesteDoAvaliador {
 		leilao.propoe(new Lance(joao, 400));
 
 		// parte 2: ação
-		Avaliador leiloeiro = new Avaliador();
-
 		leiloeiro.avalia(leilao);
 
 		// parte 3: validacao
@@ -43,11 +54,9 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEntenderLeilaoComApenasUmLance() {
 
-		Usuario alice = new Usuario("alice");
 		Leilao leilao = new Leilao("Xbox");
 
 		leilao.propoe(new Lance(alice, 4000));
-		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 
 		assertEquals(4000, leiloeiro.getMaiorLance(), 0.0001);
@@ -58,9 +67,6 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
 		
-		Usuario alice = new Usuario("Alice");
-		Usuario ricardo = new Usuario("Ricardo");
-		
 		Leilao leilao = new Leilao("Xbox");
 		
 		leilao.propoe(new Lance(alice, 4000));
@@ -68,7 +74,6 @@ public class TesteDoAvaliador {
 		leilao.propoe(new Lance(alice, 5500));
 		leilao.propoe(new Lance(ricardo, 7000));
 		
-		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 		
 		List<Lance> maiores = leiloeiro.getTresMaiores();
@@ -84,16 +89,11 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsMaioresLances() {
 		
-		Usuario alice = new Usuario("Alice");
-		Usuario ricardo = new Usuario("Ricardo");
-		Usuario joao = new Usuario("João");
-		
 		Leilao leilao = new Leilao("Chocolate");
 		
 		leilao.propoe(new Lance(alice, 10));
 		leilao.propoe(new Lance(ricardo, 30));
 		
-		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 		
 		List<Lance> maiores = leiloeiro.getTresMaiores();
