@@ -19,7 +19,7 @@ public class TestaLeilao {
 		leilao.propoe(new Lance(alice, 30));
 		
 		assertEquals(1, leilao.getLances().size());
-		assertEquals(30, leilao.getLances().get(0).getValor(), 0.0001);
+		assertEquals(30, leilao.getLances().get(0).getValor(), 0.00001);
 	}
 
 }
