@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.leilao.builder.CriadorDeLeilao;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
@@ -29,15 +30,12 @@ public class TesteDoAvaliador {
 	
 	@Test
 	public void deveEntenderLancesEmOrdemCrescente() {
-
-		// parte 1: cenario
-
-
-		Leilao leilao = new Leilao("Playstation 5");
-
-		leilao.propoe(new Lance(alice, 250));
-		leilao.propoe(new Lance(ricardo, 300));
-		leilao.propoe(new Lance(joao, 400));
+		
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 5")
+				.lance(alice, 250)
+				.lance(ricardo, 300)
+				.lance(joao, 400)
+				.constroi();
 
 		// parte 2: ação
 		leiloeiro.avalia(leilao);
@@ -53,10 +51,9 @@ public class TesteDoAvaliador {
 
 	@Test
 	public void deveEntenderLeilaoComApenasUmLance() {
-
-		Leilao leilao = new Leilao("Xbox");
-
-		leilao.propoe(new Lance(alice, 4000));
+		
+		Leilao leilao = new CriadorDeLeilao().para("Xbox").lance(alice, 4000).constroi();
+		
 		leiloeiro.avalia(leilao);
 
 		assertEquals(4000, leiloeiro.getMaiorLance(), 0.0001);
@@ -67,12 +64,12 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
 		
-		Leilao leilao = new Leilao("Xbox");
-		
-		leilao.propoe(new Lance(alice, 4000));
-		leilao.propoe(new Lance(ricardo, 5000));
-		leilao.propoe(new Lance(alice, 5500));
-		leilao.propoe(new Lance(ricardo, 7000));
+		Leilao leilao = new CriadorDeLeilao().para("Xbox")
+				.lance(alice, 4000)
+				.lance(ricardo, 5000)
+				.lance(alice, 5500)
+				.lance(ricardo, 7000)
+				.constroi();
 		
 		leiloeiro.avalia(leilao);
 		
@@ -89,10 +86,7 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsMaioresLances() {
 		
-		Leilao leilao = new Leilao("Chocolate");
-		
-		leilao.propoe(new Lance(alice, 10));
-		leilao.propoe(new Lance(ricardo, 30));
+		Leilao leilao = new CriadorDeLeilao().para("Chocolate").lance(alice, 10).lance(ricardo, 30).constroi();
 		
 		leiloeiro.avalia(leilao);
 		
