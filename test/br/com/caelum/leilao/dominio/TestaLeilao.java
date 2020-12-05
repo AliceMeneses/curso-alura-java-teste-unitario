@@ -50,4 +50,34 @@ public class TestaLeilao {
 		assertEquals(2500, leilao.getLances().get(0).getValor(), 0.00001);
 
 	}
+	
+	@Test
+	public void naoDeveAceitarMaisDoQueCincoLancesDeUmMesmoUsuario() {
+		Usuario alice = new Usuario("Alice");
+		Usuario jose = new Usuario("Jose");
+		
+		Leilao leilao = new Leilao("casa");
+		
+		leilao.propoe(new Lance(alice, 80000));
+		leilao.propoe(new Lance(jose, 85000));
+		
+		leilao.propoe(new Lance(alice, 85500));
+		leilao.propoe(new Lance(jose, 87000));
+		
+		leilao.propoe(new Lance(alice, 90000));
+		leilao.propoe(new Lance(jose, 92000));
+		
+		leilao.propoe(new Lance(alice, 95000));
+		leilao.propoe(new Lance(jose, 95500));
+		
+		leilao.propoe(new Lance(alice, 100000));
+		leilao.propoe(new Lance(jose, 100500));
+		
+		leilao.propoe(new Lance(alice, 101000));
+		
+		assertEquals(10, leilao.getLances().size());
+		int ultimo = leilao.getLances().size() - 1;
+		assertEquals(100500, leilao.getLances().get(ultimo).getValor(), 0.00001);
+
+	}
 }
