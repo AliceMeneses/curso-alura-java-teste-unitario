@@ -15,7 +15,10 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
-		if(lances.isEmpty() || !ultimoLanceDado().getUsuario().equals(lance.getUsuario())) {
+		
+		long total = lances.stream().map(Lance::getUsuario).filter((usuario) -> usuario.equals(lance.getUsuario())).count();
+		
+		if(lances.isEmpty() || (!ultimoLanceDado().getUsuario().equals(lance.getUsuario()) && total  <5) ) {
 			lances.add(lance);
 		}
 	}
