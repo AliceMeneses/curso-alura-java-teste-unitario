@@ -37,6 +37,7 @@ public class TestaLeilao {
 		assertEquals(70000, leilao.getLances().get(1).getValor(), 0.00001);
 	}
 	
+	@Test
 	public void naoDeveAceitarLancesSeguidosDoMesmoUsuario() {
 		
 		Usuario alice = new Usuario("Alice");
