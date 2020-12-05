@@ -22,4 +22,18 @@ public class TestaLeilao {
 		assertEquals(30, leilao.getLances().get(0).getValor(), 0.00001);
 	}
 
+	@Test
+	public void deveReceberVariosLances() {
+		Usuario alice = new Usuario("Alice");
+		Usuario joao = new Usuario("João");
+
+		Leilao leilao = new Leilao("carro");
+
+		leilao.propoe(new Lance(joao, 50000));
+		leilao.propoe(new Lance(alice, 70000));
+		
+		assertEquals(2, leilao.getLances().size());
+		assertEquals(50000, leilao.getLances().get(0).getValor(), 0.00001);
+		assertEquals(70000, leilao.getLances().get(1).getValor(), 0.00001);
+	}
 }
