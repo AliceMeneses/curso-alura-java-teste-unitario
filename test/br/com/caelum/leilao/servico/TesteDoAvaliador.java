@@ -97,5 +97,12 @@ public class TesteDoAvaliador {
 		assertEquals(30, maiores.get(0).getValor(), 0.0001);		
 
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void naoDeveAvaliarLeilaoSemNenhumLanceDado() {
+		Leilao leilao = new CriadorDeLeilao().para("mouse").constroi();
+		
+		leiloeiro.avalia(leilao);
+	}
 
 }
