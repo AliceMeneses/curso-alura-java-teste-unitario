@@ -45,11 +45,8 @@ public class TesteDoAvaliador {
 
 		// parte 3: validacao
 
-		double maiorEsperado = 400;
-		double menorEsperado = 250;
-
-		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
-		assertEquals(menorEsperado, leiloeiro.getMenorValor(), 0.0001);
+		assertThat(leiloeiro.getMaiorLance(), equalTo(400.0));
+		assertThat(leiloeiro.getMenorValor(), equalTo(250.0));
 	}
 
 	@Test
@@ -59,8 +56,8 @@ public class TesteDoAvaliador {
 		
 		leiloeiro.avalia(leilao);
 
-		assertEquals(4000, leiloeiro.getMaiorLance(), 0.0001);
-		assertEquals(4000, leiloeiro.getMenorValor(), 0.0001);
+		assertThat(leiloeiro.getMaiorLance(), equalTo(4000.0));
+		assertThat(leiloeiro.getMenorValor(), equalTo(4000.0));
 
 	}
 	
@@ -79,9 +76,11 @@ public class TesteDoAvaliador {
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		assertEquals(3, maiores.size());
 		
-		assertEquals(7000, maiores.get(0).getValor(), 0.0001);
-		assertEquals(5500, maiores.get(1).getValor(), 0.0001);
-		assertEquals(5000, maiores.get(2).getValor(), 0.0001);
+		assertThat(maiores, hasItems(
+				new Lance(ricardo,7000),
+				new Lance(alice,5500),
+				new Lance(ricardo,5000)
+				));
 
 
 	}
@@ -95,9 +94,11 @@ public class TesteDoAvaliador {
 		
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		assertEquals(2, maiores.size());
-		
-		assertEquals(30, maiores.get(0).getValor(), 0.0001);
-		assertEquals(30, maiores.get(0).getValor(), 0.0001);		
+
+		assertThat(maiores, hasItems(
+				new Lance(ricardo,30),
+				new Lance(alice,10)
+				));
 
 	}
 	
